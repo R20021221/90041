@@ -242,3 +242,4 @@ Rule: only mark an item complete after the code is implemented and verified. Rea
 | 2026-05-26 | Created this progress tracker. | Done |
 | 2026-05-26 | Created immutable `RULER.md` and updated handoff memory. | Done |
 | 2026-05-26 | Converted `RULER.md` to English-only wording and kept it read-only. | Done |
+| 2026-05-26 | Investigated missing `requirement.docx`; no copy found in project, `D:\STUDY`, Git history, D recycle bin, or same-size/date search. | Done |

@@ -49,6 +49,8 @@ Current git/status context:
 - Existing untracked items also seen: `Assignment 1 Solution.zip`, workflow/progress docs.
 - User removed `Assignment 1 Solution/`; current file listing confirms the folder is gone while the zip remains.
 - Do not delete or revert user files.
+- User reported `requirement.docx` missing. It was originally at `D:\STUDY\90041\WarehouseManagementPLUS\requirement.docx`; current searches found no copy in project, `D:\STUDY`, Git history, D recycle bin, or same-size/date locations. Windows Recent links still point to the original path.
+- User explained original requirement came from a long Ed webpage copied manually. Suggested better source capture: print/save Ed page to PDF, save complete webpage/HTML, or use one-shot select-all copy into txt/md after expanding all content.
 
 Latest conversation update:
 
