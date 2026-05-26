@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b6a7288-5a64-477a-95e7-db931c230a3b" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +27,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/R20021221/90041.git",
-    "accountId": "64e41cf0-3196-44e3-bd8a-b6c9378f675f"
+    "accountId": "2187c491-df90-46bc-8d0e-eda0b3a6c994"
   }
 }]]></component>
   <component name="McpProjectServerCommands">
@@ -54,7 +53,7 @@
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/STUDY/90041/WarehouseManagementPLUS",
+    "last_opened_file_path": "/Users/rong/Documents/GitHub/90041/WarehouseManagementPLUS",
     "settings.editor.selected.configurable": "editor.preferences.tabs",
     "to.speed.mode.migration.done": "true"
   }
@@ -62,7 +61,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
       </set>
     </attachedChunks>
   </component>

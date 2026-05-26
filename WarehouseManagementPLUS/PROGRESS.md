@@ -238,6 +238,7 @@ Rule: only mark an item complete after the code is implemented and verified. Rea
 | Date | Change | Status |
 | --- | --- | --- |
 | 2026-05-26 | Read requirement/workflows and all teacher-provided Java base files. | Done |
+| 2026-05-26 | Re-read `RULER.md`, `WORKFLOW_FOR_AI_EN_COMPACT.md`, `MEMORY.md`, and `PROGRESS.md` before formal implementation. | Done |
 | 2026-05-26 | Created this progress tracker. | Done |
 | 2026-05-26 | Created immutable `RULER.md` and updated handoff memory. | Done |
 | 2026-05-26 | Converted `RULER.md` to English-only wording and kept it read-only. | Done |

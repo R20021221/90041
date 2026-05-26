@@ -46,13 +46,17 @@ Salary note:
 Current git/status context:
 
 - New docs are untracked.
-- Existing untracked items also seen: `Assignment 1 Solution.zip`, `Assignment 1 Solution/`, workflow/progress docs.
+- Existing untracked items also seen: `Assignment 1 Solution.zip`, workflow/progress docs.
+- User removed `Assignment 1 Solution/`; current file listing confirms the folder is gone while the zip remains.
 - Do not delete or revert user files.
+
+Latest conversation update:
+
+- 2026-05-26: Before formal implementation, user asked AI to read `RULER.md` and `WORKFLOW_FOR_AI_EN_COMPACT.md`; both were read. `MEMORY.md` and `PROGRESS.md` were also read to follow the required tracking rules.
 
 Next step:
 
-1. Read `RULER.md`, `MEMORY.md`, then `PROGRESS.md`.
-2. Pick the first unchecked implementation phase.
-3. Tell user intended code direction before editing.
-4. Implement narrowly and verify.
-5. Mark completed checklist items, append `Progress Log`, and update `MEMORY.md`.
+1. Pick the first unchecked implementation phase.
+2. Tell user intended code direction before editing.
+3. Implement narrowly and verify.
+4. Mark completed checklist items, append `Progress Log`, and update `MEMORY.md`.
