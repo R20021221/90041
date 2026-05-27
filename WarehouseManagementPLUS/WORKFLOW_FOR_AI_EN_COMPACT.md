@@ -35,7 +35,7 @@ Upgrade A1 Warehouse Manager to A2:
 
 ## 2. OOP/Architecture
 
-- Suggested packages: `warehouse`, `employee`, `payroll`, `io`, `exceptions`; at least 3 required.
+- Suggested packages: `warehouse`, `employee`, `payroll`, `io`, `IOExceptions`; at least 3 required.
 - Enums: `CellType {WALL,AISLE,RESTRICTED,SHELF,START}`, `ShelfType {ELECTRONICS,CLOTHING,GROCERY,FURNITURE}`, `Designation {OPERATOR,SENIOR_OPERATOR,SUPERVISOR,PAYROLL_MANAGER}`.
 - Need one inheritance hierarchy, e.g. abstract `Employee` -> `Operator`, `SeniorOperator`, `Supervisor`, `PayrollManager`.
 - Need one interface, e.g. `ShiftCapable`, `PayslipViewable`, `SummaryViewable`.
@@ -347,7 +347,7 @@ Option 4 Logout: return to login.
 
 ## 14. Exceptions
 
-Create/use custom exceptions as appropriate:
+Create/use custom IOExceptions as appropriate:
 
 - `InvalidLineException`
 - `InvalidWarehouseException`
@@ -355,7 +355,7 @@ Create/use custom exceptions as appropriate:
 - `InvalidTypeException`
 - `NotFoundException`
 
-Throw where detected; catch in caller controlling file/menu flow. Line-level file exceptions print exact message and continue. Fatal warehouse/employees open/read exceptions print `Unable to process file. Exiting program.` and terminate gracefully.
+Throw where detected; catch in caller controlling file/menu flow. Line-level file IOExceptions print exact message and continue. Fatal warehouse/employees open/read IOExceptions print `Unable to process file. Exiting program.` and terminate gracefully.
 
 ## 15. Verification Checklist
 

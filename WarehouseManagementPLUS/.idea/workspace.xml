@@ -5,7 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b6a7288-5a64-477a-95e7-db931c230a3b" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/../Assignment 1 Solution/src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment 1 Solution/src/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MEMORY.md" beforeDir="false" afterPath="$PROJECT_DIR$/MEMORY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PROGRESS.md" beforeDir="false" afterPath="$PROJECT_DIR$/PROGRESS.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WORKFLOW_FOR_AI_EN_COMPACT.md" beforeDir="false" afterPath="$PROJECT_DIR$/WORKFLOW_FOR_AI_EN_COMPACT.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WORKFLOW_FOR_ME_CN_EN.md" beforeDir="false" afterPath="$PROJECT_DIR$/WORKFLOW_FOR_ME_CN_EN.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CellType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/CellType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Forklift.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/Forklift.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Messages.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OperationHistory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OperationRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OperationType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shelf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/Shelf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WarehouseCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/WarehouseCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WarehouseGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WarehouseManagerEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WarehouseManagerEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WarehouseMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/WarehouseMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +73,8 @@
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/rong/Documents/GitHub/90041/WarehouseManagementPLUS",
     "settings.editor.selected.configurable": "editor.preferences.tabs",
-    "to.speed.mode.migration.done": "true"
+    "to.speed.mode.migration.done": "true",
+    "应用程序.WarehouseManagerEngine.executor": "Run"
   }
 }]]></component>
   <component name="SharedIndexes">

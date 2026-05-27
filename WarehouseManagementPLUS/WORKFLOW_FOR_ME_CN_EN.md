@@ -50,7 +50,7 @@ Alignment rule: this workflow and `WORKFLOW_FOR_AI_EN_COMPACT.md` describe the s
   - `employee`: employee hierarchy, designation, shift summary.
   - `payroll`: payslip, salary calculator, payroll service.
   - `io`: file readers/writers, CSV parsing.
-  - `exceptions`: custom exceptions.
+  - `IOExceptions`: custom IOExceptions.
 - `WarehouseManagerEngine.java` 留在默认 package，因为要求不能移动。
 - 至少一个 inheritance hierarchy，例如:
   - abstract `Employee`
@@ -645,7 +645,7 @@ Return to employee login.
 
 ## 11. Exceptions / 异常设计
 
-Create custom exceptions where appropriate:
+Create custom IOExceptions where appropriate:
 
 - `InvalidLineException`
 - `InvalidWarehouseException`
@@ -657,7 +657,7 @@ Guideline:
 
 - The method that detects/throws an exception should not always catch it in the same place.
 - Prefer catching in the caller that controls file-reading flow or menu flow.
-- File-line exceptions are caught, message printed, line skipped.
+- File-line IOExceptions are caught, message printed, line skipped.
 - Fatal file open errors for warehouse/employees print `Unable to process file. Exiting program.` and terminate gracefully.
 
 ## 12. Testing Workflow / 测试工作流
@@ -705,11 +705,11 @@ Guideline:
 - OOP & encapsulation: private fields, getters/setters, no privacy leaks, low coupling/high cohesion, 2 marks.
 - Polymorphism: inheritance, overloading, interface, overriding, 4 marks.
 - Control flow: traceable loops, clear break conditions, switch/if-else, no more than 3 nested loops, no `System.exit`, 1 mark.
-- File handling: read/write correctly, exceptions handled, no duplicated IO, no `java.nio.Files`, 2 marks.
+- File handling: read/write correctly, IOExceptions handled, no duplicated IO, no `java.nio.Files`, 2 marks.
 - Style: naming, indentation, spacing, readable files, 1 mark.
 - Documentation/Javadoc: major classes/methods, enums documented, no Javadoc errors, 2 marks.
 - UML: major classes/methods, associations, multiplicities, packages, Java library Exception association, manual diagram, 3 marks.
-- Exception handling: all custom and system exceptions handled, 2 marks.
+- Exception handling: all custom and system IOExceptions handled, 2 marks.
 - Collections: correct simple collections, no complex structures, 2 marks.
 
 ## 14. Recommended Build Order / 推荐实现顺序
@@ -726,7 +726,7 @@ Guideline:
 10. Connect movement/shelf actions to per-employee shift summary.
 11. Implement salary calculation and payslip generation.
 12. Implement all payslip view scenarios.
-13. Add custom exceptions and refine catch locations.
+13. Add custom IOExceptions and refine catch locations.
 14. Clean packages, comments, Javadoc.
 15. Build UML manually.
 16. Run exact-output tests and EdStem verification.
