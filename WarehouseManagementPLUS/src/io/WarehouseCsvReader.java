@@ -43,7 +43,7 @@ public class WarehouseCsvReader {
                     continue;
                 }
 
-                String[] fields = line.split(",", -1);
+                String[] fields = line.split(",");
                 try {
                     if (fields.length != WAREHOUSE_FIELD_COUNT) {
                         throw new InvalidLineException(invalidWarehouseLineMessage(lineNumber));
@@ -96,6 +96,10 @@ public class WarehouseCsvReader {
         }
 
         CellType incomingType = CellType.valueOf(cellTypeValue);
+        if (incomingType == CellType.RESTRICTED && hasRestrictedShelfType(fields)) {
+            throw new InvalidWarehouseException(restrictedShelfTypeMessage(lineNumber));
+        }
+
         CellType currentType = warehouseMap.getCellType(floorIndex, row, col);
         if (currentType != CellType.AISLE && currentType != incomingType) {
             throw new InvalidWarehouseException(warehouseOverlapMessage(lineNumber));
@@ -108,10 +112,14 @@ public class WarehouseCsvReader {
         return loadShelfLine(fields, lineNumber, warehouseMap, floorIndex, row, col);
     }
 
+    private boolean hasRestrictedShelfType(String[] fields) {
+        String shelfTypeValue = fields[4].trim();
+        return !shelfTypeValue.isEmpty() && !"-".equals(shelfTypeValue);
+    }
+
     private boolean loadRestrictedLine(String[] fields, int lineNumber, WarehouseMap warehouseMap,
                                        int floorIndex, int row, int col) throws InvalidWarehouseException {
-        String shelfTypeValue = fields[4].trim();
-        if (!shelfTypeValue.isEmpty() && !"-".equals(shelfTypeValue)) {
+        if (hasRestrictedShelfType(fields)) {
             throw new InvalidWarehouseException(restrictedShelfTypeMessage(lineNumber));
         }
 

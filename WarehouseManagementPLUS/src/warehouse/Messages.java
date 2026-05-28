@@ -58,6 +58,9 @@ public final class Messages {
     public static final String SHIFT_COMPLETE =
             "All shelves in the warehouse are empty and nothing to deliver. Returning to main menu.";
 
+    public static final String FLOOR_COMPLETE =
+            "This floor has all shelves empty. Return to floor menu.";
+
     public static final String SESSION_PAUSED =
             "Shift paused.";
 
@@ -113,7 +116,7 @@ public final class Messages {
     public static void printEmployeeLoginPrompt() {
         System.out.println();
         System.out.println("=== Employee Login ===");
-        System.out.println("Enter your Employee ID or X to terminate: ");
+        System.out.print("Enter your Employee ID or X to terminate: ");
     }
 
     public static void printEmployeeWelcome(String employeeName, String designation) {
@@ -252,7 +255,7 @@ public final class Messages {
     }
 
     public static void printIncorrectEmployeeDetails(int lineNumber) {
-        System.out.println("Incorrect Employee Details at line " + lineNumber + ". Skipping the line.");
+        System.out.println("Incorrect Employee Details at line " + lineNumber + ". Skipping this line.");
     }
 
     public static void printIncorrectEmployeeDesignation(int lineNumber) {

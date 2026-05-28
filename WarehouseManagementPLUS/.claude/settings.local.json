@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(javac -d /tmp/wmp-classes src/WarehouseManagerEngine.java src/warehouse/*.java src/employee/*.java src/payroll/*.java src/io/*.java src/IOExceptions/*.java)",
+      "Bash(mkdir -p /tmp/wmp-test/data)",
+      "Bash(cp -r src/data/* /tmp/wmp-test/data/)",
+      "Read(//tmp/wmp-test/**)",
+      "Read(//d/tmp/wmp-test/**)",
+      "Bash(java -cp /tmp/wmp-classes WarehouseManagerEngine 3 4 5 data/master_warehouse_2.csv data/employees_1.csv)",
+      "Bash(java -cp /tmp/wmp-classes WarehouseManagerEngine 3 4 5 /tmp/wmp-test/data/master_warehouse_2.csv /tmp/wmp-test/data/employees_1.csv)",
+      "Bash(echo \"exit=$?\")",
+      "PowerShell($path = \"$env:TEMP\\\\wmp-test\\\\input.txt\"; $bytes = [System.IO.File]::ReadAllBytes\\($path\\); Write-Output \"First 10 bytes:\"; $bytes | Select-Object -First 10 | ForEach-Object { \"  0x{0:X2} '{1}'\" -f $_, [char]$_ }; Write-Output \"Total bytes: $\\($bytes.Length\\)\")"
+    ]
+  }
+}

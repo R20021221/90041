@@ -278,3 +278,12 @@ Rule: only mark an item complete after the code is implemented and verified. Rea
 | 2026-05-28 | Phase 13 hard compliance checks: compile, forbidden API scans, package/default-package checks, complex-collection scan, and Javadoc generation passed; cleanup still needed for long lines and stale `.class` files. | Partial |
 | 2026-05-28 | Phase 14 broad verification run passed across command-line validation, CSV invalid lines, role menus, shift/resume/completion, summaries, payroll reports, payslip generation/display, write-back, and final EdStem-style compile/run. | Done |
 | 2026-05-28 | Removed stale `.class` compilation outputs from `src`; Java source cleanup for four long lines remains. | Done |
+| 2026-05-28 | Re-read `MEMORY.md`, `PROGRESS.md`, `RULER.md`, and `WORKFLOW_FOR_AI_EN_COMPACT.md`; no Java source changes made. | Done |
+| 2026-05-28 | Fixed teacher-test output formatting around all-floor map prompt, role-menu return newline, and login termination save message; compile and smoke test passed. | Done |
+| 2026-05-28 | Adjusted context-specific newline behavior for valid floor selection and successful login/menu spacing; smoke test skipped per user request. | Done |
+| 2026-05-28 | Added context-specific blank line after own shift summary before returning to operator/supervisor menus; compile passed. | Done |
+| 2026-05-28 | Changed warehouse CSV validation priority so restricted rows with shelf type print the required restricted-location shelf-type message before overlap checks; compile passed. | Done |
+| 2026-05-28 | Aligned program output with `src/example.md`: added `FLOOR_COMPLETE` message, single-floor-complete detection after delivery, caller-level trailing blanks for `View my payslip` / `Payslips generated successfully.` / reportee + all-employee summary iterations, leading blanks before "View all" listings, and per-payslip trailing `separator + blank` in `viewAllPayslips`. End-to-end run matches the example under UTF-8. | Done |
+| 2026-05-28 | Re-read handoff docs, workflow, current Java diffs, file layout, and `src/example.md` after Claude's follow-up work; no Java source changes made. | Done |
+| 2026-05-28 | Fixed collected teacher-test issues: warehouse trailing-comma field counts, invalid-login prompt newline, payslip exit saving condition, and final floor/warehouse completion message order/spacing; compile passed. | Done |
+| 2026-05-28 | Fixed resume behavior for already-complete warehouses so completion message wins over no-start resume guard; compile passed. | Done |

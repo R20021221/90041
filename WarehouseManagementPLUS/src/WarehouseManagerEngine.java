@@ -158,7 +158,9 @@ public class WarehouseManagerEngine {
 
             try {
                 Employee employee = findEmployeeById(employeeId);
+                System.out.println();
                 Messages.printEmployeeWelcome(employee.getEmployeeName(), employee.getDesignation().name());
+                System.out.println();
                 runRoleMenu(employee);
             } catch (NotFoundException ex) {
                 System.out.println(ex.getMessage());
@@ -208,9 +210,11 @@ public class WarehouseManagerEngine {
                     break;
                 case Constants.MENU_VIEW_SUMMARY:
                     Messages.printShiftSummary(employee.getShiftSummary());
+                    System.out.println();
                     break;
                 case Constants.MENU_VIEW_PAYSLIP:
                     viewEmployeePayslip(employee);
+                    System.out.println();
                     break;
                 case Constants.MENU_EXIT:
                     logout = true;
@@ -236,9 +240,11 @@ public class WarehouseManagerEngine {
                     break;
                 case Constants.MENU_VIEW_SUMMARY:
                     Messages.printShiftSummary(employee.getShiftSummary());
+                    System.out.println();
                     break;
                 case Constants.MENU_VIEW_PAYSLIP:
                     viewEmployeePayslip(employee);
+                    System.out.println();
                     break;
                 case Constants.MENU_SUPERVISOR_REPORTEES:
                     viewReporteeSummaries(employee);
@@ -286,6 +292,7 @@ public class WarehouseManagerEngine {
         this.loadedPayslips = generatedPayslips;
         this.payslipsGeneratedThisSession = true;
         System.out.println(Messages.PAYSLIPS_GENERATED_SUCCESSFULLY);
+        System.out.println();
     }
 
     private void viewReporteeSummaries(Employee employee) {
@@ -296,14 +303,18 @@ public class WarehouseManagerEngine {
 
         Supervisor supervisor = (Supervisor) employee;
         ArrayList<Employee> reportees = supervisor.getReportees();
+        System.out.println();
         for (Employee reportee : reportees) {
             Messages.printEmployeeShiftSummary(reportee);
+            System.out.println();
         }
     }
 
     private void viewAllEmployeeSummaries() {
+        System.out.println();
         for (Employee employee : this.employees) {
             Messages.printEmployeeShiftSummary(employee);
+            System.out.println();
         }
     }
 
@@ -357,11 +368,11 @@ public class WarehouseManagerEngine {
                 throw new NotFoundException(Messages.PAYSLIP_NOT_GENERATED_YET);
             }
 
-            for (int i = 0; i < this.loadedPayslips.size(); i++) {
-                if (i > 0) {
-                    System.out.println(Messages.PAYSLIP_SEPARATOR);
-                }
-                Messages.printPayslip(this.loadedPayslips.get(i));
+            System.out.println();
+            for (Payslip payslip : this.loadedPayslips) {
+                Messages.printPayslip(payslip);
+                System.out.println(Messages.PAYSLIP_SEPARATOR);
+                System.out.println();
             }
         } catch (NotFoundException ex) {
             System.out.println(ex.getMessage());
@@ -391,6 +402,9 @@ public class WarehouseManagerEngine {
             } catch (IOException ex) {
                 System.out.println(Messages.FILE_PROCESSING_ERROR);
             }
+        }
+        else if (this.payslipFileExists) {
+            System.out.println(Messages.SAVING_PAYSLIPS_FILE);
         }
         else {
             System.out.println(Messages.NO_PAYSLIPS_TO_SAVE);

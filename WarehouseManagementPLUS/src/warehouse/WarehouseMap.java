@@ -92,7 +92,7 @@ public class WarehouseMap {
      */
     public void startShift(Scanner scanner, ShiftSummary shiftSummary) {
         if (isWarehouseComplete()) {
-            System.out.println(Messages.SHIFT_COMPLETE);
+            printWarehouseCompleteForMenu();
             return;
         }
 
@@ -106,13 +106,13 @@ public class WarehouseMap {
      * @param scanner scanner for input
      */
     public void resumeShift(Scanner scanner, ShiftSummary shiftSummary) {
-        if (!this.shiftStarted) {
-            System.out.println(Messages.NO_SHIFT_TO_RESUME);
+        if (isWarehouseComplete()) {
+            printWarehouseCompleteForMenu();
             return;
         }
 
-        if (isWarehouseComplete()) {
-            System.out.println(Messages.SHIFT_COMPLETE);
+        if (!this.shiftStarted) {
+            System.out.println(Messages.NO_SHIFT_TO_RESUME);
             return;
         }
 
@@ -123,16 +123,17 @@ public class WarehouseMap {
         boolean inFloorMenu = true;
         while (inFloorMenu) {
             displayAllFloors();
-            System.out.println();
             System.out.print(Messages.FLOOR_SELECTION_PROMPT);
             String input = scanner.nextLine().trim();
 
             if (Constants.MENU_RETURN.equalsIgnoreCase(input)) {
+                System.out.println();
                 return;
             }
 
             int floorIndex = parseFloorSelection(input);
             if (floorIndex < 0) {
+                System.out.println();
                 System.out.println("Invalid Input");
                 continue;
             }
@@ -164,7 +165,7 @@ public class WarehouseMap {
         while (!shiftOver) {
 
             if (isWarehouseComplete()) {
-                System.out.println(Messages.SHIFT_COMPLETE);
+                printWarehouseCompleteForMenu();
                 return;
             }
 
@@ -180,8 +181,22 @@ public class WarehouseMap {
 
             // Deliver carried item at START (Rule A) - NOT a movement
             if (Constants.MOVE_DELIVER.equals(input)) {
-                if (deliverAtStart(forklift)) {
+                boolean delivered = deliverAtStart(forklift);
+                if (delivered) {
                     shiftSummary.recordDeliveredItem();
+                    int floorIndex = findForkliftFloor(forklift);
+                    boolean floorComplete = isFloorComplete(floorIndex);
+                    boolean warehouseComplete = isWarehouseComplete();
+                    if (floorComplete) {
+                        System.out.println(Messages.FLOOR_COMPLETE);
+                    }
+                    if (warehouseComplete) {
+                        printWarehouseCompleteForMenu();
+                        return;
+                    }
+                    if (floorComplete) {
+                        return;
+                    }
                 }
                 display(forklift);
                 continue;
@@ -259,6 +274,11 @@ public class WarehouseMap {
 
     private boolean isForkliftAtStart(Forklift forklift) {
         return forklift.getRow() == Constants.START_ROW && forklift.getCol() == Constants.START_COL;
+    }
+
+    private void printWarehouseCompleteForMenu() {
+        System.out.println(Messages.SHIFT_COMPLETE);
+        System.out.println();
     }
 
     /**
@@ -368,6 +388,28 @@ public class WarehouseMap {
                             && !this.visitedShelves[floorIndex][r][c]) {
                         return false;
                     }
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean isFloorComplete(int floorIndex) {
+        Forklift forklift = this.forklifts[floorIndex];
+        if (forklift != null && forklift.isCarrying()) {
+            return false;
+        }
+        for (int r = 0; r < this.rows; r++) {
+            for (int c = 0; c < this.cols; c++) {
+                if (this.grid[floorIndex][r][c].getType() != CellType.SHELF) {
+                    continue;
+                }
+                if (!this.visitedShelves[floorIndex][r][c]) {
+                    return false;
+                }
+                Shelf shelf = this.grid[floorIndex][r][c].getShelf();
+                if (shelf != null && shelf.getSize() > 0) {
+                    return false;
                 }
             }
         }
