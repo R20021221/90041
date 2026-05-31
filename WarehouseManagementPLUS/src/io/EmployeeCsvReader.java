@@ -84,7 +84,11 @@ public class EmployeeCsvReader {
 
     private double parseBaseSalary(String salaryText) {
         try {
-            return Double.parseDouble(salaryText);
+            double parsedSalary = Double.parseDouble(salaryText);
+            if (Double.isNaN(parsedSalary) || Double.isInfinite(parsedSalary)) {
+                return -1;
+            }
+            return parsedSalary;
         } catch (NumberFormatException ex) {
             return -1;
         }

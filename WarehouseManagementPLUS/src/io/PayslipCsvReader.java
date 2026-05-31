@@ -87,7 +87,11 @@ public class PayslipCsvReader {
 
     private double parseMoney(String value) {
         try {
-            return Double.parseDouble(value);
+            double parsedMoney = Double.parseDouble(value);
+            if (Double.isNaN(parsedMoney) || Double.isInfinite(parsedMoney)) {
+                return -1;
+            }
+            return parsedMoney;
         } catch (NumberFormatException ex) {
             return -1;
         }

@@ -148,7 +148,7 @@ public class WarehouseManagerEngine {
         boolean terminated = false;
         while (!terminated) {
             Messages.printEmployeeLoginPrompt();
-            String employeeId = SCANNER.nextLine().trim();
+            String employeeId = readInputToken();
 
             if (Constants.MENU_RETURN.equalsIgnoreCase(employeeId)) {
                 exitProgram();
@@ -199,7 +199,7 @@ public class WarehouseManagerEngine {
         boolean logout = false;
         while (!logout) {
             Messages.printOperatorMenu(employee.getEmployeeName(), employee.getDesignation().name());
-            String choice = SCANNER.nextLine().trim();
+            String choice = readInputToken();
 
             switch (choice) {
                 case Constants.MENU_START_SHIFT:
@@ -229,7 +229,7 @@ public class WarehouseManagerEngine {
         boolean logout = false;
         while (!logout) {
             Messages.printSupervisorMenu(employee.getEmployeeName());
-            String choice = SCANNER.nextLine().trim();
+            String choice = readInputToken();
 
             switch (choice) {
                 case Constants.MENU_START_SHIFT:
@@ -262,7 +262,7 @@ public class WarehouseManagerEngine {
         boolean logout = false;
         while (!logout) {
             Messages.printPayrollManagerMenu(employee.getEmployeeName());
-            String choice = SCANNER.nextLine().trim();
+            String choice = readInputToken();
 
             switch (choice) {
                 case Constants.MENU_START_SHIFT:
@@ -364,12 +364,13 @@ public class WarehouseManagerEngine {
                 throw new NotFoundException(Messages.PAYSLIP_NOT_GENERATED_YET);
             }
 
-            if (this.loadedPayslips == null || this.loadedPayslips.isEmpty()) {
+            ArrayList<Payslip> currentEmployeePayslips = getPayslipsForCurrentEmployees();
+            if (currentEmployeePayslips.isEmpty()) {
                 throw new NotFoundException(Messages.PAYSLIP_NOT_GENERATED_YET);
             }
 
             System.out.println();
-            for (Payslip payslip : this.loadedPayslips) {
+            for (Payslip payslip : currentEmployeePayslips) {
                 Messages.printPayslip(payslip);
                 System.out.println(Messages.PAYSLIP_SEPARATOR);
                 System.out.println();
@@ -393,23 +394,56 @@ public class WarehouseManagerEngine {
         throw new NotFoundException(Messages.payslipNotFoundMessage(employeeId));
     }
 
+    private ArrayList<Payslip> getPayslipsForCurrentEmployees() {
+        ArrayList<Payslip> currentEmployeePayslips = new ArrayList<>();
+        if (this.loadedPayslips == null) {
+            return currentEmployeePayslips;
+        }
+
+        for (Payslip payslip : this.loadedPayslips) {
+            if (employeeExists(payslip.getEmployeeId())) {
+                currentEmployeePayslips.add(payslip);
+            }
+        }
+        return currentEmployeePayslips;
+    }
+
+    private boolean employeeExists(String employeeId) {
+        for (Employee employee : this.employees) {
+            if (employee.getEmployeeId().equals(employeeId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void exitProgram(){
         if (this.payslipsGeneratedThisSession) {
             System.out.println(Messages.SAVING_PAYSLIPS_FILE);
             try {
                 PayslipCsvWriter payslipCsvWriter = new PayslipCsvWriter();
-                payslipCsvWriter.writePayslips(Constants.PAYSLIPS_FILE_PATH, this.loadedPayslips);
+                payslipCsvWriter.writePayslips(Constants.PAYSLIPS_FILE_PATH, getPayslipsForCurrentEmployees());
             } catch (IOException ex) {
                 System.out.println(Messages.FILE_PROCESSING_ERROR);
             }
         }
         else if (this.payslipFileExists) {
             System.out.println(Messages.SAVING_PAYSLIPS_FILE);
+            try {
+                PayslipCsvWriter payslipCsvWriter = new PayslipCsvWriter();
+                payslipCsvWriter.writePayslips(Constants.PAYSLIPS_FILE_PATH, getPayslipsForCurrentEmployees());
+            } catch (IOException ex) {
+                System.out.println(Messages.FILE_PROCESSING_ERROR);
+            }
         }
         else {
             System.out.println(Messages.NO_PAYSLIPS_TO_SAVE);
         }
         System.out.println(Messages.GOODBYE_A2);
+    }
+
+    private String readInputToken() {
+        return SCANNER.next().trim();
     }
 
 

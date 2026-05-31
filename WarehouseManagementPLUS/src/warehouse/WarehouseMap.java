@@ -124,7 +124,7 @@ public class WarehouseMap {
         while (inFloorMenu) {
             displayAllFloors();
             System.out.print(Messages.FLOOR_SELECTION_PROMPT);
-            String input = scanner.nextLine().trim();
+            String input = readInputToken(scanner);
 
             if (Constants.MENU_RETURN.equalsIgnoreCase(input)) {
                 System.out.println();
@@ -170,7 +170,7 @@ public class WarehouseMap {
             }
 
             Messages.printMovementOptions();
-            String input = scanner.nextLine().trim().toUpperCase();
+            String input = readInputToken(scanner).toUpperCase();
 
             // Quit to main menu
             if (Constants.MENU_QUIT.equals(input)) {
@@ -436,7 +436,7 @@ public class WarehouseMap {
         boolean inShelfMenu = true;
         while (inShelfMenu) {
             Messages.printShelfMenu();
-            String input = scanner.nextLine().trim().toUpperCase();
+            String input = readInputToken(scanner).toUpperCase();
             inShelfMenu = handleShelfMenuInput(scanner, forklift, cell, input);
         }
     }
@@ -488,7 +488,7 @@ public class WarehouseMap {
         }
 
         System.out.print(Messages.ENTER_ITEM_INDEX);
-        String input = scanner.nextLine().trim();
+        String input = readInputToken(scanner);
 
         int index = parsePositiveInt(input);
         if (index < 1) {
@@ -515,6 +515,10 @@ public class WarehouseMap {
         } catch (NumberFormatException ex) {
             return -1;
         }
+    }
+
+    private String readInputToken(Scanner scanner) {
+        return scanner.next().trim();
     }
 
     private void printHitMessageFromAttempt(String direction, Forklift forklift, ShiftSummary shiftSummary) {

@@ -287,3 +287,6 @@ Rule: only mark an item complete after the code is implemented and verified. Rea
 | 2026-05-28 | Re-read handoff docs, workflow, current Java diffs, file layout, and `src/example.md` after Claude's follow-up work; no Java source changes made. | Done |
 | 2026-05-28 | Fixed collected teacher-test issues: warehouse trailing-comma field counts, invalid-login prompt newline, payslip exit saving condition, and final floor/warehouse completion message order/spacing; compile passed. | Done |
 | 2026-05-28 | Fixed resume behavior for already-complete warehouses so completion message wins over no-start resume guard; compile passed. | Done |
+| 2026-05-29 | Filtered payslip printing and write-back against the current employees file per teacher guidance; compile and targeted temporary-file tests passed. | Done |
+| 2026-05-29 | Hardened numeric CSV edge cases by rejecting `NaN` and infinite values in employee base salary and payslip money parsing; compile passed. | Done |
+| 2026-05-29 | Switched interactive console input reads from line-based `nextLine().trim()` to token-based helpers using `Scanner.next().trim()` so whitespace-only lines between commands are skipped; CSV readers remain line-based. Compile and blank-line input smoke test passed. | Done |

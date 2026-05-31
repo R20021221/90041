@@ -8,10 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MEMORY.md" beforeDir="false" afterPath="$PROJECT_DIR$/MEMORY.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PROGRESS.md" beforeDir="false" afterPath="$PROJECT_DIR$/PROGRESS.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UML_Scaffold.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WarehouseManagerEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WarehouseManagerEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/WarehouseCsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/WarehouseCsvReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/warehouse/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/Messages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/EmployeeCsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/EmployeeCsvReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/PayslipCsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/PayslipCsvReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/warehouse/WarehouseMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/WarehouseMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="23" />
+    <option name="cachedIndexableFilesCount" value="57" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -31,12 +30,12 @@
     &quot;assignee&quot;: &quot;R20021221&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/R20021221/90041.git",
-    "accountId": "64e41cf0-3196-44e3-bd8a-b6c9378f675f"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/R20021221/90041.git&quot;,
+    &quot;accountId&quot;: &quot;64e41cf0-3196-44e3-bd8a-b6c9378f675f&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -49,23 +48,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/STUDY/90041/WarehouseManagementPLUS",
-    "settings.editor.selected.configurable": "editor.preferences.tabs",
-    "to.speed.mode.migration.done": "true",
-    "应用程序.WarehouseManagerEngine.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/STUDY/90041/WarehouseManagementPLUS&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;应用程序.WarehouseManagerEngine.executor&quot;: &quot;Run&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
