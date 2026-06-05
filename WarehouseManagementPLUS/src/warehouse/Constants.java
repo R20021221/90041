@@ -17,8 +17,6 @@ public final class Constants {
     public static final int START_ROW = 1;
     public static final int START_COL = 1;
 
-    public static final int INITIAL_WAREHOUSE_ID = 1;
-
     public static final double DELIVERY_PAY = 10.00;
     public static final double HITS_PENALTY = 0.25;
     public static final double RESTRICTED_AREA_PENALTY = 0.50;
@@ -27,12 +25,6 @@ public final class Constants {
     // Used to compute available inner cells (rows-2)*(cols-2) - 1 start cell
     public static final int BOUNDARY_THICKNESS = 2;
     public static final int START_OFFSET = 1;
-
-    public static final int MIN_SHELVES = 1;
-    public static final int MIN_RESTRICTED = 1;
-
-    public static final int MIN_ITEMS_PER_SHELF = 1;
-    public static final int MAX_ITEMS_PER_SHELF = 4;
 
     public static final int INITIAL_SHELF_CAPACITY = 2;
     public static final int SIZE_MULTIPLIER = 2;
@@ -57,7 +49,6 @@ public final class Constants {
     public static final String MENU_PAYROLL_GENERATE = "2";
     public static final String MENU_PAYROLL_VIEW_PAYSLIPS = "3";
     public static final String MENU_PAYROLL_LOGOUT = "4";
-    public static final String MENU_RESET = "4";
     public static final String MENU_EXIT = "5";
 
     public static final String MENU_QUIT = "Q";
@@ -65,13 +56,7 @@ public final class Constants {
 
     public static final String SHELF_MENU_VIEW = "V";
     public static final String SHELF_MENU_PICK = "P";
-    public static final String SHELF_MENU_PLACE = "L";
     public static final String SHELF_MENU_QUIT = "Q";
-
-    public static final String[] DEFAULT_ITEM_NAMES = {
-            "Box", "Pallet", "Monitor", "Keyboard", "Chair",
-            "Cable", "Book", "Toolkit", "Printer", "Router"
-    };
 
     /**
      * Maps a cell type to a printable symbol.

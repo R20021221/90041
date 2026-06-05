@@ -4,7 +4,7 @@ import employee.ShiftSummary;
 import java.util.Scanner;
 
 /**
- * WarehouseMap represents a 2D warehouse grid that can be navigated by a forklift.
+ * Represents a multi-floor warehouse grid navigated by per-floor forklifts.
  */
 public class WarehouseMap {
 
@@ -17,8 +17,6 @@ public class WarehouseMap {
 
     private boolean[][][] visitedShelves;
     private boolean shiftStarted;
-
-    private int warehouseId;
 
     /**
      * Constructs a new WarehouseMap.
@@ -34,7 +32,6 @@ public class WarehouseMap {
         this.grid = new WarehouseCell[floors][rows][cols];
         this.forklifts = new Forklift[floors];
 
-        this.warehouseId = Constants.INITIAL_WAREHOUSE_ID;
         this.visitedShelves = new boolean[floors][rows][cols];
         this.shiftStarted = false;
 
@@ -89,6 +86,7 @@ public class WarehouseMap {
      * Starts a warehouse shift or continues the shared shift state.
      *
      * @param scanner scanner for input
+     * @param shiftSummary current employee's shift summary
      */
     public void startShift(Scanner scanner, ShiftSummary shiftSummary) {
         if (isWarehouseComplete()) {
@@ -104,6 +102,7 @@ public class WarehouseMap {
      * Resumes an already started warehouse shift.
      *
      * @param scanner scanner for input
+     * @param shiftSummary current employee's shift summary
      */
     public void resumeShift(Scanner scanner, ShiftSummary shiftSummary) {
         if (isWarehouseComplete()) {
@@ -119,6 +118,12 @@ public class WarehouseMap {
         runFloorSelection(scanner, shiftSummary);
     }
 
+    /**
+     * Runs the floor-selection loop before entering a movement menu.
+     *
+     * @param scanner scanner for console input
+     * @param shiftSummary current employee's shift summary
+     */
     private void runFloorSelection(Scanner scanner, ShiftSummary shiftSummary) {
         boolean inFloorMenu = true;
         while (inFloorMenu) {
@@ -146,6 +151,12 @@ public class WarehouseMap {
         }
     }
 
+    /**
+     * Parses a one-based floor number entered by the user.
+     *
+     * @param input user input
+     * @return zero-based floor index, or -1 when invalid
+     */
     private int parseFloorSelection(String input) {
         try {
             int floorNumber = Integer.parseInt(input);
@@ -158,6 +169,13 @@ public class WarehouseMap {
         }
     }
 
+    /**
+     * Runs the movement loop for one selected floor.
+     *
+     * @param scanner scanner for console input
+     * @param forklift forklift assigned to the selected floor
+     * @param shiftSummary current employee's shift summary
+     */
     private void runMovementMenu(Scanner scanner, Forklift forklift, ShiftSummary shiftSummary) {
         display(forklift);
 
@@ -216,26 +234,6 @@ public class WarehouseMap {
     }
 
     /**
-     * Resets the map and regenerates a new warehouse, incrementing warehouse ID.
-     */
-    public void reset() {
-        this.warehouseId++;
-        this.visitedShelves = new boolean[this.floors][this.rows][this.cols];
-        this.shiftStarted = false;
-        initialiseGrid();
-        initialiseForklifts();
-    }
-
-    /**
-     * Returns a snapshot of the grid types (privacy-safe).
-     *
-     * @return snapshot of CellType values
-     */
-    public CellType[][] getGridSnapshot() {
-        return getGridSnapshot(0);
-    }
-
-    /**
      * Returns a snapshot of one floor's grid types.
      *
      * @param floorIndex zero-based floor index
@@ -245,7 +243,7 @@ public class WarehouseMap {
         CellType[][] snapshot = new CellType[this.rows][this.cols];
         for (int r = 0; r < this.rows; r++) {
             for (int c = 0; c < this.cols; c++) {
-                snapshot[r][c] = this.grid[floorIndex][r][c].getType(); //IMP_NOTE: no privacy leaks with enums
+                snapshot[r][c] = this.grid[floorIndex][r][c].getType();
             }
         }
         return snapshot;
@@ -254,10 +252,10 @@ public class WarehouseMap {
     /* ================= PUBLIC SUPPORT METHODS ================= */
 
     /**
-     * Handles the interaction after moving onto a cell (e.g., shelf).
+     * Handles the interaction after a forklift moves onto an actionable cell.
      *
-     * @param scanner scanner
-     * @param forklift forklift
+     * @param scanner scanner for shelf-menu input
+     * @param forklift forklift that moved
      */
     public void handleVisit(Scanner scanner, Forklift forklift) {
         int floorIndex = findForkliftFloor(forklift);
@@ -272,10 +270,19 @@ public class WarehouseMap {
 
     /* ================= PRIVATE METHODS ================= */
 
+    /**
+     * Checks whether a forklift is on the start cell.
+     *
+     * @param forklift forklift to check
+     * @return true if the forklift is at START
+     */
     private boolean isForkliftAtStart(Forklift forklift) {
         return forklift.getRow() == Constants.START_ROW && forklift.getCol() == Constants.START_COL;
     }
 
+    /**
+     * Prints the warehouse completion message with the menu-return spacing.
+     */
     private void printWarehouseCompleteForMenu() {
         System.out.println(Messages.SHIFT_COMPLETE);
         System.out.println();
@@ -302,6 +309,9 @@ public class WarehouseMap {
         return true;
     }
 
+    /**
+     * Creates the base grid for all floors.
+     */
     private void initialiseGrid() {
         for (int floorIndex = 0; floorIndex < this.floors; floorIndex++) {
             for (int r = 0; r < this.rows; r++) {
@@ -313,12 +323,22 @@ public class WarehouseMap {
         }
     }
 
+    /**
+     * Creates one forklift for each floor.
+     */
     private void initialiseForklifts() {
         for (int floorIndex = 0; floorIndex < this.floors; floorIndex++) {
             this.forklifts[floorIndex] = new Forklift();
         }
     }
 
+    /**
+     * Determines the default cell type for a location before CSV loading.
+     *
+     * @param row row index
+     * @param col column index
+     * @return default cell type
+     */
     private CellType determineBaseCellType(int row, int col) {
         if (isBoundary(row, col)) {
             return CellType.WALL;
@@ -329,30 +349,82 @@ public class WarehouseMap {
         return CellType.AISLE;
     }
 
+    /**
+     * Checks whether a location is on the boundary wall.
+     *
+     * @param row row index
+     * @param col column index
+     * @return true if the location is on the map boundary
+     */
     private boolean isBoundary(int row, int col) {
         return row == 0 || col == 0 || row == this.rows - 1 || col == this.cols - 1;
     }
 
+    /**
+     * Checks whether a zero-based floor index is inside this warehouse.
+     *
+     * @param floorIndex zero-based floor index
+     * @return true if the floor exists
+     */
     public boolean isValidFloorIndex(int floorIndex) {
         return floorIndex >= 0 && floorIndex < this.floors;
     }
 
+    /**
+     * Checks whether a row and column identify a non-boundary cell.
+     *
+     * @param row row index
+     * @param col column index
+     * @return true if the location is inside the usable warehouse area
+     */
     public boolean isInteriorLocation(int row, int col) {
         return row > 0 && row < this.rows - 1 && col > 0 && col < this.cols - 1;
     }
 
+    /**
+     * Returns the cell type at a warehouse location.
+     *
+     * @param floorIndex zero-based floor index
+     * @param row row index
+     * @param col column index
+     * @return cell type
+     */
     public CellType getCellType(int floorIndex, int row, int col) {
         return this.grid[floorIndex][row][col].getType();
     }
 
+    /**
+     * Returns the shelf type at a warehouse location.
+     *
+     * @param floorIndex zero-based floor index
+     * @param row row index
+     * @param col column index
+     * @return shelf type, or null if the cell has no shelf
+     */
     public ShelfType getShelfType(int floorIndex, int row, int col) {
         return this.grid[floorIndex][row][col].getShelfType();
     }
 
+    /**
+     * Marks a warehouse location as restricted.
+     *
+     * @param floorIndex zero-based floor index
+     * @param row row index
+     * @param col column index
+     */
     public void setRestrictedCell(int floorIndex, int row, int col) {
         this.grid[floorIndex][row][col].setType(CellType.RESTRICTED);
     }
 
+    /**
+     * Marks a warehouse location as a shelf and optionally adds an item.
+     *
+     * @param floorIndex zero-based floor index
+     * @param row row index
+     * @param col column index
+     * @param shelfType shelf category
+     * @param itemName item name, or blank when the shelf starts empty
+     */
     public void setShelfCell(int floorIndex, int row, int col, ShelfType shelfType, String itemName) {
         WarehouseCell cell = this.grid[floorIndex][row][col];
         if (cell.getType() != CellType.SHELF) {
@@ -365,12 +437,22 @@ public class WarehouseMap {
     }
 
     // RULE A completion: visited all shelves AND removed all items from all shelves AND no forklift is carrying.
+    /**
+     * Checks the assignment completion rule for the whole warehouse.
+     *
+     * @return true if all shelves are visited and empty and no forklift carries an item
+     */
     private boolean isWarehouseComplete() {
         return allShelvesVisited()
                 && allShelvesEmpty()
                 && allForkliftsEmpty();
     }
 
+    /**
+     * Checks whether every forklift is empty.
+     *
+     * @return true if no forklift is carrying an item
+     */
     private boolean allForkliftsEmpty() {
         for (Forklift forklift : this.forklifts) {
             if (forklift != null && forklift.isCarrying()) {
@@ -380,6 +462,11 @@ public class WarehouseMap {
         return true;
     }
 
+    /**
+     * Checks whether every shelf has been visited.
+     *
+     * @return true if all shelves have been visited
+     */
     private boolean allShelvesVisited() {
         for (int floorIndex = 0; floorIndex < this.floors; floorIndex++) {
             for (int r = 0; r < this.rows; r++) {
@@ -394,6 +481,12 @@ public class WarehouseMap {
         return true;
     }
 
+    /**
+     * Checks whether one floor has all shelves visited and empty.
+     *
+     * @param floorIndex zero-based floor index
+     * @return true if the floor is complete
+     */
     private boolean isFloorComplete(int floorIndex) {
         Forklift forklift = this.forklifts[floorIndex];
         if (forklift != null && forklift.isCarrying()) {
@@ -416,6 +509,11 @@ public class WarehouseMap {
         return true;
     }
 
+    /**
+     * Checks whether every shelf in the warehouse is empty.
+     *
+     * @return true if all shelves are empty
+     */
     private boolean allShelvesEmpty() {
         for (int floorIndex = 0; floorIndex < this.floors; floorIndex++) {
             for (int r = 0; r < this.rows; r++) {
@@ -432,6 +530,13 @@ public class WarehouseMap {
         return true;
     }
 
+    /**
+     * Runs the shelf interaction menu for the current cell.
+     *
+     * @param scanner scanner for console input
+     * @param forklift forklift on the shelf cell
+     * @param cell shelf cell
+     */
     private void runShelfMenu(Scanner scanner, Forklift forklift, WarehouseCell cell) {
         boolean inShelfMenu = true;
         while (inShelfMenu) {
@@ -441,6 +546,15 @@ public class WarehouseMap {
         }
     }
 
+    /**
+     * Handles one shelf-menu command.
+     *
+     * @param scanner scanner for console input
+     * @param forklift forklift on the shelf cell
+     * @param cell shelf cell
+     * @param input shelf-menu command
+     * @return true to keep showing the shelf menu
+     */
     private boolean handleShelfMenuInput(Scanner scanner, Forklift forklift, WarehouseCell cell, String input) {
         switch (input) {
             case Constants.SHELF_MENU_VIEW:
@@ -460,6 +574,11 @@ public class WarehouseMap {
         }
     }
 
+    /**
+     * Prints the items currently stored on a shelf cell.
+     *
+     * @param cell shelf cell
+     */
     private void printShelfItems(WarehouseCell cell) {
         Shelf shelf = cell.getShelf();
         if (shelf == null || shelf.getSize() == 0) {
@@ -475,6 +594,13 @@ public class WarehouseMap {
         }
     }
 
+    /**
+     * Handles picking one item from a shelf onto the forklift.
+     *
+     * @param scanner scanner for console input
+     * @param forklift forklift on the shelf cell
+     * @param cell shelf cell
+     */
     private void pickItemFromShelf(Scanner scanner, Forklift forklift, WarehouseCell cell) {
         if (forklift.isCarrying()) {
             System.out.println(Messages.ALREADY_CARRYING);
@@ -496,7 +622,6 @@ public class WarehouseMap {
             return;
         }
 
-        //IMP_NOTE: To remove an item from cell> shelf, invoke a method from cell that invokes a method from shelf to modify the array.
         Item removed = cell.removeItemfromShelf(index);
         if (removed == null) {
             System.out.println(Messages.INVALID_INPUT);
@@ -508,6 +633,12 @@ public class WarehouseMap {
         System.out.println(Messages.ITEM_PICKED);
     }
 
+    /**
+     * Parses a positive integer command value.
+     *
+     * @param value input text
+     * @return parsed positive integer, or -1 when invalid
+     */
     private int parsePositiveInt(String value) {
         try {
             int parsed = Integer.parseInt(value);
@@ -517,10 +648,23 @@ public class WarehouseMap {
         }
     }
 
+    /**
+     * Reads the next non-whitespace console token.
+     *
+     * @param scanner scanner for console input
+     * @return trimmed input token
+     */
     private String readInputToken(Scanner scanner) {
         return scanner.next().trim();
     }
 
+    /**
+     * Prints the correct blocked-movement message and updates the employee summary.
+     *
+     * @param direction attempted movement direction
+     * @param forklift forklift that attempted the move
+     * @param shiftSummary current employee's shift summary
+     */
     private void printHitMessageFromAttempt(String direction, Forklift forklift, ShiftSummary shiftSummary) {
         int floorIndex = findForkliftFloor(forklift);
         int nextRow = forklift.getRow();
@@ -556,6 +700,12 @@ public class WarehouseMap {
         return this.forklifts[floorIndex];
     }
 
+    /**
+     * Finds the floor assigned to a forklift.
+     *
+     * @param forklift forklift to locate
+     * @return zero-based floor index
+     */
     private int findForkliftFloor(Forklift forklift) {
         for (int floorIndex = 0; floorIndex < this.floors; floorIndex++) {
             if (this.forklifts[floorIndex] == forklift) {

@@ -86,15 +86,32 @@ public class Forklift {
 
     /* ===== Simple getters / setters  */
 
+    /**
+     * Returns the forklift's current row.
+     *
+     * @return current row
+     */
     public int getRow() { return this.row; }
+
+    /**
+     * Returns the forklift's current column.
+     *
+     * @return current column
+     */
     public int getCol() { return this.col; }
 
-    public int getHits() { return this.hits; }
-    public int getMoves() { return this.moves; }
-
-    public boolean isSessionPaused() { return this.sessionPaused; }
+    /**
+     * Updates whether this forklift's current shift is paused.
+     *
+     * @param val true if the session should be marked as paused
+     */
     public void setSessionPaused(boolean val) { this.sessionPaused = val; }
 
+    /**
+     * Returns whether the forklift is currently carrying an item.
+     *
+     * @return true if an item is being carried
+     */
     public boolean isCarrying() { return this.carriedItem != null; }
 
     /**
@@ -112,7 +129,7 @@ public class Forklift {
      * @return the dropped item, or null if none was carried
      */
     public Item drop() {
-        Item item = new Item(this.carriedItem); //IMP_NOTE: copy constructor to avoid privacy leak
+        Item item = new Item(this.carriedItem);
         this.carriedItem = null;
         return item;
     }

@@ -92,7 +92,7 @@ public class Shelf {
         }
 
         // Store the item to return
-        Item removed = new Item(this.items[index]); //IMP_NOTE: copy constructor to avoid privacy leaks
+        Item removed = new Item(this.items[index]);
 
         // Shift remaining items left to fill the gap
         shiftLeft(index);
@@ -117,7 +117,7 @@ public class Shelf {
 
         // Copy only valid items into the snapshot
         for (int i = 0; i < this.size; i++) {
-            snapshot[i] = new Item(this.items[i]); //IMP_NOTE: copy constructor to avoid privacy leaks
+            snapshot[i] = new Item(this.items[i]);
         }
 
         return snapshot;
@@ -132,6 +132,11 @@ public class Shelf {
         return this.size;
     }
 
+    /**
+     * Returns the shelf category loaded from the warehouse CSV.
+     *
+     * @return shelf type, or null if no type has been assigned
+     */
     public ShelfType getShelfType() {
         return this.shelfType;
     }

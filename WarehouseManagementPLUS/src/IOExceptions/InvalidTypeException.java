@@ -5,6 +5,11 @@ package IOExceptions;
  */
 public class InvalidTypeException extends Exception {
 
+    /**
+     * Creates an exception with the message that should be shown to the user.
+     *
+     * @param message error message
+     */
     public InvalidTypeException(String message) {
         super(message);
     }

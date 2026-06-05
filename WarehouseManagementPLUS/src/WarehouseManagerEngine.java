@@ -1,3 +1,15 @@
+/**
+ * Student Name: Guancheng Rong
+ * Student ID: 1856981
+ * Student Email: guancheng.rong@student.unimelb.edu.au
+ * AI Usage Declaration:
+ * I used ChatGPT to help me understand Java packages, abstract classes,
+ * and Javadoc rules. I also used it to analyse sections of my code,
+ * identify potential weaknesses, and revise syntax errors before testing
+ * the program with my full data. A full record of prompts and outputs is
+ * available upon request.
+ */
+
 import IOExceptions.NotFoundException;
 import java.io.File;
 import java.io.IOException;
@@ -144,6 +156,9 @@ public class WarehouseManagerEngine {
         return true;
     }
 
+    /**
+     * Runs the employee login loop until the user terminates the program.
+     */
     private void runLoginLoop() {
         boolean terminated = false;
         while (!terminated) {
@@ -169,6 +184,13 @@ public class WarehouseManagerEngine {
         }
     }
 
+    /**
+     * Finds an employee by ID.
+     *
+     * @param employeeId employee ID entered by the user
+     * @return matching employee
+     * @throws NotFoundException if no employee has the supplied ID
+     */
     private Employee findEmployeeById(String employeeId) throws NotFoundException {
         for (Employee employee : this.employees) {
             if (employee.getEmployeeId().equals(employeeId)) {
@@ -178,6 +200,11 @@ public class WarehouseManagerEngine {
         throw new NotFoundException(Messages.EMPLOYEE_NOT_FOUND);
     }
 
+    /**
+     * Dispatches an employee to the menu for their designation.
+     *
+     * @param employee logged-in employee
+     */
     private void runRoleMenu(Employee employee) {
         switch (employee.getDesignation()) {
             case OPERATOR:
@@ -195,6 +222,11 @@ public class WarehouseManagerEngine {
         }
     }
 
+    /**
+     * Runs the operator and senior operator menu.
+     *
+     * @param employee logged-in operator-like employee
+     */
     private void runOperatorMenu(Employee employee) {
         boolean logout = false;
         while (!logout) {
@@ -225,6 +257,11 @@ public class WarehouseManagerEngine {
         }
     }
 
+    /**
+     * Runs the supervisor menu.
+     *
+     * @param employee logged-in supervisor
+     */
     private void runSupervisorMenu(Employee employee) {
         boolean logout = false;
         while (!logout) {
@@ -258,6 +295,11 @@ public class WarehouseManagerEngine {
         }
     }
 
+    /**
+     * Runs the payroll manager menu.
+     *
+     * @param employee logged-in payroll manager
+     */
     private void runPayrollManagerMenu(Employee employee) {
         boolean logout = false;
         while (!logout) {
@@ -283,6 +325,9 @@ public class WarehouseManagerEngine {
         }
     }
 
+    /**
+     * Generates current-session payslips for all employees in employees-file order.
+     */
     private void generatePayslips() {
         ArrayList<Payslip> generatedPayslips = new ArrayList<>();
         for (Employee employee : this.employees) {
@@ -295,6 +340,11 @@ public class WarehouseManagerEngine {
         System.out.println();
     }
 
+    /**
+     * Prints shift summaries for a supervisor's direct reportees.
+     *
+     * @param employee logged-in supervisor
+     */
     private void viewReporteeSummaries(Employee employee) {
         if (!(employee instanceof Supervisor)) {
             System.out.println(Messages.MENU_UNAVAILABLE);
@@ -310,6 +360,9 @@ public class WarehouseManagerEngine {
         }
     }
 
+    /**
+     * Prints shift summaries for all employees in employees-file order.
+     */
     private void viewAllEmployeeSummaries() {
         System.out.println();
         for (Employee employee : this.employees) {
@@ -318,6 +371,12 @@ public class WarehouseManagerEngine {
         }
     }
 
+    /**
+     * Calculates one payslip from an employee's current-session shift summary.
+     *
+     * @param employee employee whose payslip should be created
+     * @return calculated payslip
+     */
     private Payslip createPayslip(Employee employee) {
         double basePay = employee.getBaseSalary();
         double deliveredItemPay = 0.0;
@@ -345,6 +404,11 @@ public class WarehouseManagerEngine {
                 reporteesManagingPay, netSalary);
     }
 
+    /**
+     * Prints one employee's payslip when it is available.
+     *
+     * @param employee employee requesting their payslip
+     */
     private void viewEmployeePayslip(Employee employee) {
         try {
             if (!this.payslipsGeneratedThisSession && !this.payslipFileExists) {
@@ -358,6 +422,9 @@ public class WarehouseManagerEngine {
         }
     }
 
+    /**
+     * Prints all payslips that belong to employees loaded in the current run.
+     */
     private void viewAllPayslips() {
         try {
             if (!this.payslipsGeneratedThisSession && !this.payslipFileExists) {
@@ -380,6 +447,13 @@ public class WarehouseManagerEngine {
         }
     }
 
+    /**
+     * Finds a payslip by employee ID.
+     *
+     * @param employeeId employee ID to search for
+     * @return matching payslip
+     * @throws NotFoundException if no payslip exists for the supplied employee ID
+     */
     private Payslip findPayslipByEmployeeId(String employeeId) throws NotFoundException {
         if (this.loadedPayslips == null) {
             throw new NotFoundException(Messages.payslipNotFoundMessage(employeeId));
@@ -394,6 +468,11 @@ public class WarehouseManagerEngine {
         throw new NotFoundException(Messages.payslipNotFoundMessage(employeeId));
     }
 
+    /**
+     * Returns payslips whose employee IDs exist in the current employees file.
+     *
+     * @return filtered payslips
+     */
     private ArrayList<Payslip> getPayslipsForCurrentEmployees() {
         ArrayList<Payslip> currentEmployeePayslips = new ArrayList<>();
         if (this.loadedPayslips == null) {
@@ -408,6 +487,12 @@ public class WarehouseManagerEngine {
         return currentEmployeePayslips;
     }
 
+    /**
+     * Checks whether an employee ID exists in the current employees list.
+     *
+     * @param employeeId employee ID to search for
+     * @return true if the employee exists
+     */
     private boolean employeeExists(String employeeId) {
         for (Employee employee : this.employees) {
             if (employee.getEmployeeId().equals(employeeId)) {
@@ -417,6 +502,9 @@ public class WarehouseManagerEngine {
         return false;
     }
 
+    /**
+     * Saves payslip data when required and prints the final goodbye message.
+     */
     private void exitProgram(){
         if (this.payslipsGeneratedThisSession) {
             System.out.println(Messages.SAVING_PAYSLIPS_FILE);
@@ -442,10 +530,13 @@ public class WarehouseManagerEngine {
         System.out.println(Messages.GOODBYE_A2);
     }
 
+    /**
+     * Reads the next non-whitespace console token.
+     *
+     * @return trimmed input token
+     */
     private String readInputToken() {
         return SCANNER.next().trim();
     }
 
-
-    //TODO: Create other methods
 }

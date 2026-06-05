@@ -128,17 +128,19 @@ public class WarehouseCell {
     }
 
     /**
-     * Returns the shelf stored in this cell.
+     * Returns a copy of the shelf stored in this cell.
      *
-     * May return null if the cell is not a shelf.
-     * Callers are expected to check hasShelf() first.
-     *
-     * @return shelf or null
+     * @return copied shelf snapshot
      */
     public Shelf getShelf() {
-        return new Shelf(this.shelf); //IMP_NOTE: return a copy of the shelf to avoid privacy leaks
+        return new Shelf(this.shelf);
     }
 
+    /**
+     * Returns the type of shelf attached to this cell.
+     *
+     * @return shelf type, or null if this cell has no shelf
+     */
     public ShelfType getShelfType() {
         if (this.shelf == null) {
             return null;
@@ -146,20 +148,22 @@ public class WarehouseCell {
         return this.shelf.getShelfType();
     }
 
-    //IMP_NOTE: Shelf belongs to cell, if we need to modify a shelf in the cell, we need to pass the control (ie invoking a method) to cell first then and then to shelf
+    // Route shelf changes through the cell to preserve ownership of the shelf reference.
 
     /**
-     * Adds an item to shelf
-     * @param item Item to be added
+     * Adds an item to the shelf held by this cell.
+     *
+     * @param item item to add
      */
     public void addItemtoShelf(Item item) {
         this.shelf.addItem(item);
     }
 
     /**
-     * Removes an item from the shelf
-     * @param index removes the item based on the index passed.
-     * @return returns the removed item
+     * Removes an item from the shelf held by this cell.
+     *
+     * @param index user-facing 1-based item index
+     * @return removed item, or null if the index is invalid
      */
     public Item removeItemfromShelf(int index) {
         return this.shelf.removeItemByUserIndex(index);

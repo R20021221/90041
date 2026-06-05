@@ -8,9 +8,30 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MEMORY.md" beforeDir="false" afterPath="$PROJECT_DIR$/MEMORY.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PROGRESS.md" beforeDir="false" afterPath="$PROJECT_DIR$/PROGRESS.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IOExceptions/InvalidLineException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IOExceptions/InvalidLineException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IOExceptions/InvalidLocationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IOExceptions/InvalidLocationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IOExceptions/InvalidTypeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IOExceptions/InvalidTypeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IOExceptions/InvalidWarehouseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IOExceptions/InvalidWarehouseException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IOExceptions/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IOExceptions/NotFoundException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WarehouseManagerEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WarehouseManagerEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/employee/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/employee/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/Operator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/employee/PayrollManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/PayrollManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/employee/SeniorOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/SeniorOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/employee/ShiftSummary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/ShiftSummary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/employee/Supervisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/Supervisor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/CsvSupport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/CsvSupport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/io/EmployeeCsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/EmployeeCsvReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/io/PayslipCsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/PayslipCsvReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/PayslipCsvWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/PayslipCsvWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/WarehouseCsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/WarehouseCsvReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/payroll/Payslip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/payroll/Payslip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/warehouse/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/warehouse/Forklift.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/Forklift.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/warehouse/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/warehouse/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/Messages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/warehouse/Shelf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/Shelf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/warehouse/WarehouseCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/WarehouseCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/warehouse/WarehouseMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/warehouse/WarehouseMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

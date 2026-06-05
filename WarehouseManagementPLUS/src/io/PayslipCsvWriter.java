@@ -40,6 +40,12 @@ public class PayslipCsvWriter {
         }
     }
 
+    /**
+     * Converts a payslip to one CSV output line.
+     *
+     * @param payslip payslip to format
+     * @return CSV line
+     */
     private String formatPayslip(Payslip payslip) {
         return payslip.getEmployeeId() + ","
                 + payslip.getEmployeeName() + ","
@@ -51,6 +57,12 @@ public class PayslipCsvWriter {
                 + formatMoney(payslip.getNetSalary());
     }
 
+    /**
+     * Formats a money value with two decimal places.
+     *
+     * @param value money value
+     * @return formatted money text
+     */
     private String formatMoney(double value) {
         return String.format("%.2f", value);
     }

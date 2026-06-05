@@ -211,16 +211,16 @@ Rule: only mark an item complete after the code is implemented and verified. Rea
 
 ### Phase 13 - Quality, Javadoc, UML
 
-- [ ] Add meaningful Javadoc to major classes and methods.
-- [ ] Add Javadoc to enum types.
-- [ ] Keep inline comments only where they clarify complex logic.
-- [ ] Check naming, indentation, and line lengths.
+- [x] Add meaningful Javadoc to major classes and methods.
+- [x] Add Javadoc to enum types.
+- [x] Keep inline comments only where they clarify complex logic.
+- [x] Check naming, indentation, and line lengths.
 - [x] Verify no `java.nio.Files`.
 - [x] Verify no `System.exit()`.
 - [x] Verify `WarehouseManagerEngine.java` remains outside packages.
 - [x] Verify no complex collections are used.
 - [x] Generate Javadoc locally without errors.
-- [ ] Build manual UML diagram and export as PDF/PNG.
+- [x] Build manual UML diagram and export as PDF/PNG.
 
 ### Phase 14 - Verification
 
@@ -290,3 +290,12 @@ Rule: only mark an item complete after the code is implemented and verified. Rea
 | 2026-05-29 | Filtered payslip printing and write-back against the current employees file per teacher guidance; compile and targeted temporary-file tests passed. | Done |
 | 2026-05-29 | Hardened numeric CSV edge cases by rejecting `NaN` and infinite values in employee base salary and payslip money parsing; compile passed. | Done |
 | 2026-05-29 | Switched interactive console input reads from line-based `nextLine().trim()` to token-based helpers using `Scanner.next().trim()` so whitespace-only lines between commands are skipped; CSV readers remain line-based. Compile and blank-line input smoke test passed. | Done |
+| 2026-06-01 | Re-read `MEMORY.md`, `PROGRESS.md`, `RULER.md`, and `WORKFLOW_FOR_AI_EN_COMPACT.md` before continuing; no Java source changes made. | Done |
+| 2026-06-01 | Inspected Phase 13 Javadoc/comment/UML state without Java source changes; found missing method-level Javadocs, stale TODO/outdated comments, four long source lines, and existing root `UML_Scaffold.png`. | Reviewed |
+| 2026-06-01 | Read `Point standard.md`; noted Part 2 is the primary current guidance, while Part 1 should be used carefully as historical style/structure support because A2 now permits collections such as `ArrayList`. | Reviewed |
+| 2026-06-01 | Added Javadocs for major public APIs and core private control-flow/parsing methods across employee, payroll, exception, warehouse, io, messages, and engine classes; compile passed and public-method Javadoc scan found no missing method comments. | Done |
+| 2026-06-01 | Cleaned submission-facing comments only: removed TODO/development-note comments, replaced stale CSV support wording, and removed `IMP_NOTE` inline notes without changing executable logic or output strings. Compile passed; only one long output-string line remains. | Done |
+| 2026-06-01 | Split the final long output string in `Messages.INVALID_ARGS_USAGE` without changing its value; compile passed and long-line scan is clean. Also inspected suspected A1 legacy members without deleting them. | Done |
+| 2026-06-01 | Removed definition-only A1 legacy constants/methods one at a time with compile checks after each deletion. Removed unused random-generation/menu constants, A1 `Messages` methods/constants, `WarehouseMap` reset/warehouse-id members, no-arg grid snapshot, and unused `Forklift` stats/session getters. Final compile and long-line scans passed. | Done |
+| 2026-06-01 | Added authorship and AI Usage Declaration comment block to the top of `WarehouseManagerEngine.java`; compile passed. | Done |
+| 2026-06-01 | Final hygiene check: compile passed, no forbidden APIs or merge/TODO traces found, no long Java lines, no `.class/tmp/bak/log` files under `src`, and `src/UML_Guancheng_Rong.pdf` exists. Local `javadoc` command is still not on PATH. | Done |

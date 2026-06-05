@@ -57,6 +57,15 @@ public class PayslipCsvReader {
         return payslips;
     }
 
+    /**
+     * Parses and validates one payslip CSV data line.
+     *
+     * @param fields comma-separated fields from the line
+     * @param lineNumber source CSV line number
+     * @return payslip created from the line
+     * @throws InvalidLineException if required identity fields are invalid
+     * @throws InvalidTypeException if salary fields are invalid
+     */
     private Payslip parsePayslipLine(String[] fields, int lineNumber)
             throws InvalidLineException, InvalidTypeException {
         if (fields.length != PAYSLIP_FIELD_COUNT) {
@@ -85,6 +94,12 @@ public class PayslipCsvReader {
                 restrictedAreaPenalty, reporteesManagingPay, netSalary);
     }
 
+    /**
+     * Parses a finite money value.
+     *
+     * @param value money text from the CSV file
+     * @return parsed money value, or -1 when invalid
+     */
     private double parseMoney(String value) {
         try {
             double parsedMoney = Double.parseDouble(value);

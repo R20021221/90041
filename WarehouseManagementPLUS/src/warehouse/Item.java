@@ -26,10 +26,20 @@ public class Item {
         }
     }
 
-    public String getName() { return this.name; } //IMP_NOTE:Returning Strings doesnt cause privacy leaks, strings are immutable
+    /**
+     * Returns the item name.
+     *
+     * @return item name
+     */
+    public String getName() { return this.name; }
 
+    /**
+     * Returns the printable form of this item.
+     *
+     * @return item name
+     */
     @Override
     public String toString() {
-        return this.name; //IMP_NOTE:Returning Strings doesnt cause privacy leaks, strings are immutable
+        return this.name;
     }
 }

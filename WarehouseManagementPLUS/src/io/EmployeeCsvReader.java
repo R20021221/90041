@@ -59,6 +59,15 @@ public class EmployeeCsvReader {
         return employees;
     }
 
+    /**
+     * Parses and validates one employees CSV data line.
+     *
+     * @param fields comma-separated fields from the line
+     * @param lineNumber source CSV line number
+     * @return employee created from the line
+     * @throws InvalidLineException if mandatory employee details are invalid
+     * @throws InvalidTypeException if the designation is invalid
+     */
     private Employee parseEmployeeLine(String[] fields, int lineNumber)
             throws InvalidLineException, InvalidTypeException {
         if (fields.length < MIN_EMPLOYEE_FIELD_COUNT) {
@@ -82,6 +91,12 @@ public class EmployeeCsvReader {
         return createEmployee(employeeId, employeeName, designation, baseSalary, managerId);
     }
 
+    /**
+     * Parses a positive finite base salary.
+     *
+     * @param salaryText salary text from the CSV file
+     * @return parsed salary, or -1 when invalid
+     */
     private double parseBaseSalary(String salaryText) {
         try {
             double parsedSalary = Double.parseDouble(salaryText);
@@ -94,6 +109,12 @@ public class EmployeeCsvReader {
         }
     }
 
+    /**
+     * Parses an employee designation.
+     *
+     * @param designationText designation text from the CSV file
+     * @return matching designation, or null when invalid
+     */
     private Designation parseDesignation(String designationText) {
         try {
             return Designation.valueOf(designationText);
@@ -102,6 +123,16 @@ public class EmployeeCsvReader {
         }
     }
 
+    /**
+     * Creates the correct employee subtype for a designation.
+     *
+     * @param employeeId employee ID
+     * @param employeeName employee name
+     * @param designation employee designation
+     * @param baseSalary base salary
+     * @param managerId direct manager ID, or empty when none is supplied
+     * @return employee subtype instance
+     */
     private Employee createEmployee(String employeeId, String employeeName, Designation designation,
                                     double baseSalary, String managerId) {
         switch (designation) {
@@ -118,6 +149,11 @@ public class EmployeeCsvReader {
         }
     }
 
+    /**
+     * Connects employees to direct supervisors using the manager IDs loaded from CSV.
+     *
+     * @param employees employees in file order
+     */
     private void buildReportees(ArrayList<Employee> employees) {
         for (Employee employee : employees) {
             String managerId = employee.getManagerId();
@@ -132,6 +168,13 @@ public class EmployeeCsvReader {
         }
     }
 
+    /**
+     * Finds an employee in a supplied list by ID.
+     *
+     * @param employees employees to search
+     * @param employeeId employee ID
+     * @return matching employee, or null if not found
+     */
     private Employee findEmployeeById(ArrayList<Employee> employees, String employeeId) {
         for (Employee employee : employees) {
             if (employee.getEmployeeId().equals(employeeId)) {

@@ -14,7 +14,8 @@ public final class Messages {
     public static final String HYPHEN = "-";
 
     public static final String INVALID_ARGS_USAGE =
-            "Invalid number of Command Line Arguments. Usage: java WarehouseManagerEngine <floors> <rows> <cols> <master file> <employees file>.";
+            "Invalid number of Command Line Arguments. Usage: java WarehouseManagerEngine "
+                    + "<floors> <rows> <cols> <master file> <employees file>.";
 
     public static final String INVALID_ARGS_INTEGER =
             "Error: Floors, rows and columns must be integers.";
@@ -52,9 +53,6 @@ public final class Messages {
     public static final String NO_SHIFT_TO_RESUME =
             "Shift not started, cannot resume shift.";
 
-    public static final String GOODBYE =
-            "Session abandoned. Goodbye!";
-
     public static final String SHIFT_COMPLETE =
             "All shelves in the warehouse are empty and nothing to deliver. Returning to main menu.";
 
@@ -88,9 +86,6 @@ public final class Messages {
     public static final String ITEM_PLACED =
             "Item placed successfully.";
 
-    public static final String RESET_DONE =
-            "Shift and warehouse reset.";
-
     public static final String PAYSLIPS_GENERATED_SUCCESSFULLY =
             "Payslips generated successfully.";
 
@@ -100,29 +95,31 @@ public final class Messages {
     public static final String PAYSLIP_SEPARATOR =
             "=======================";
 
-    public static void printWelcome() {
-        System.out.println("Welcome to Warehouse Manager Console.");
-    }
-
-    public static void printMainMenuCommands() {
-        System.out.println("\n=== Warehouse Manager Menu ===");
-        System.out.println("1. Start warehouse shift.");
-        System.out.println("2. Resume last shift.");
-        System.out.println("4. Reset shift and warehouse.");
-        System.out.println("5. Abandon the shift and exit.");
-        System.out.print("> ");
-    }
-
+    /**
+     * Prints the employee login prompt.
+     */
     public static void printEmployeeLoginPrompt() {
         System.out.println();
         System.out.println("=== Employee Login ===");
         System.out.print("Enter your Employee ID or X to terminate: ");
     }
 
+    /**
+     * Prints the welcome line for a successfully logged-in employee.
+     *
+     * @param employeeName employee name
+     * @param designation employee designation
+     */
     public static void printEmployeeWelcome(String employeeName, String designation) {
         System.out.println("Welcome, " + employeeName + " [" + designation + "]");
     }
 
+    /**
+     * Prints the operator or senior operator menu.
+     *
+     * @param employeeName employee name
+     * @param designation employee designation
+     */
     public static void printOperatorMenu(String employeeName, String designation) {
         System.out.println("=== Operator Menu — " + employeeName + " [" + designation + "] ===");
         System.out.println("1. Start warehouse shift");
@@ -133,6 +130,11 @@ public final class Messages {
         System.out.print("> ");
     }
 
+    /**
+     * Prints the supervisor menu.
+     *
+     * @param employeeName employee name
+     */
     public static void printSupervisorMenu(String employeeName) {
         System.out.println("=== Supervisor Menu — " + employeeName + " [SUPERVISOR] ===");
         System.out.println("1. Start warehouse shift");
@@ -144,6 +146,11 @@ public final class Messages {
         System.out.print("> ");
     }
 
+    /**
+     * Prints the payroll manager menu.
+     *
+     * @param employeeName employee name
+     */
     public static void printPayrollManagerMenu(String employeeName) {
         System.out.println("=== Payroll Manager Menu — " + employeeName + " [PAYROLL_MANAGER] ===");
         System.out.println("1. View all employees' shift summary");
@@ -153,6 +160,9 @@ public final class Messages {
         System.out.print("> ");
     }
 
+    /**
+     * Prints the movement menu used while navigating a warehouse floor.
+     */
     public static void printMovementOptions() {
         System.out.println("Enter direction:");
         System.out.println("U - Up.");
@@ -165,6 +175,9 @@ public final class Messages {
     }
 
 
+    /**
+     * Prints the shelf interaction menu.
+     */
     public static void printShelfMenu() {
         System.out.println("Shelf Menu:");
         System.out.println("Press V to view items.");
@@ -173,20 +186,38 @@ public final class Messages {
         System.out.print("> ");
     }
 
+    /**
+     * Prints the warehouse map legend.
+     */
     public static void printLegend() {
         System.out.println("Legend: # Wall | . Aisle | X Restricted | S Shelf | O Start | F Forklift");
     }
 
+    /**
+     * Prints the heading for one floor.
+     *
+     * @param floorNumber one-based floor number
+     */
     public static void printFloorHeader(int floorNumber) {
         System.out.println("==========Floor: " + floorNumber + "==========");
     }
 
+    /**
+     * Prints one employee's shift summary.
+     *
+     * @param shiftSummary shift summary to print
+     */
     public static void printShiftSummary(ShiftSummary shiftSummary) {
         System.out.println("No. of Items delivered: " + shiftSummary.getDeliveredItemCount());
         System.out.println("No. of Walls hit: " + shiftSummary.getWallHitCount());
         System.out.println("No. of Restricted Areas hit: " + shiftSummary.getRestrictedAreaHitCount());
     }
 
+    /**
+     * Prints an employee identity line followed by that employee's shift summary.
+     *
+     * @param employee employee whose summary should be printed
+     */
     public static void printEmployeeShiftSummary(Employee employee) {
         System.out.println("Employee Id: " + employee.getEmployeeId()
                 + ", Employee Name: " + employee.getEmployeeName()
@@ -194,6 +225,11 @@ public final class Messages {
         printShiftSummary(employee.getShiftSummary());
     }
 
+    /**
+     * Prints a payslip in the required console format.
+     *
+     * @param payslip payslip to print
+     */
     public static void printPayslip(Payslip payslip) {
         System.out.println("EmployeeID: " + payslip.getEmployeeId());
         System.out.println("Employee Name: " + payslip.getEmployeeName());
@@ -205,10 +241,21 @@ public final class Messages {
         System.out.println("Net Salary: " + formatMoney(payslip.getNetSalary()));
     }
 
+    /**
+     * Prints the standard missing-payslip message for one employee.
+     *
+     * @param employeeId employee ID
+     */
     public static void printPayslipNotFound(String employeeId) {
         System.out.println(payslipNotFoundMessage(employeeId));
     }
 
+    /**
+     * Builds the standard missing-payslip message for one employee.
+     *
+     * @param employeeId employee ID
+     * @return missing-payslip message
+     */
     public static String payslipNotFoundMessage(String employeeId) {
         return "Employee " + employeeId + "'s payslip not found.";
     }
@@ -217,63 +264,136 @@ public final class Messages {
         return String.format("%.2f", value);
     }
 
+    /**
+     * Prints the message for an invalid warehouse CSV line structure.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printInvalidWarehouseLine(int lineNumber) {
         System.out.println("Invalid Warehouse line at line " + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for an invalid warehouse floor value.
+     *
+     * @param floorValue invalid floor value
+     */
     public static void printInvalidWarehouseFloor(String floorValue) {
         System.out.println("Invalid floor number in warehouse file: " + floorValue + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for an invalid warehouse row or column location.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printInvalidWarehouseLocation(int lineNumber) {
         System.out.println("Invalid location in warehouse file at line " + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for an invalid warehouse cell type.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printInvalidWarehouseCellType(int lineNumber) {
         System.out.println("Invalid cell type at line " + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for a shelf/restricted-location overlap.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printWarehouseOverlap(int lineNumber) {
         System.out.println("Restricted location overlaps shelf at line " + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for a restricted location with a shelf type.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printRestrictedShelfType(int lineNumber) {
         System.out.println("Shelf Type cannot be defined for Restricted Location at line "
                 + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for an invalid shelf type.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printInvalidShelfType(int lineNumber) {
         System.out.println("Invalid shelf type at line " + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for a shelf type mismatch at an existing shelf.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printShelfTypeMismatch(int lineNumber) {
         System.out.println("Shelf Type mismatched at line " + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for an employees CSV line with too few fields.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printIncorrectEmployeesLine(int lineNumber) {
         System.out.println("Incorrect Employees line at line " + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for invalid employee details.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printIncorrectEmployeeDetails(int lineNumber) {
         System.out.println("Incorrect Employee Details at line " + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for an invalid employee designation.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printIncorrectEmployeeDesignation(int lineNumber) {
         System.out.println("Incorrect Employee Designation at line " + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for a payslips CSV line with an invalid structure.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printIncorrectPayslipsLine(int lineNumber) {
         System.out.println("Incorrect Payslips line at line " + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for missing payslip employee identity details.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printIncorrectPayslipEmployeeDetails(int lineNumber) {
         System.out.println("Incorrect Employee Details at line " + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the message for invalid payslip salary details.
+     *
+     * @param lineNumber CSV line number
+     */
     public static void printIncorrectEmployeeSalaryDetails(int lineNumber) {
         System.out.println("Incorrect Employee Salary details at line " + lineNumber + ". Skipping this line.");
     }
 
+    /**
+     * Prints the Assignment 2 welcome message.
+     */
     public static void printWelcomeA2() {
         System.out.println("Welcome to Warehouse Manager Assignment 2.");
     }

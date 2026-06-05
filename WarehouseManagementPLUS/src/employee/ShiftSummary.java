@@ -30,14 +30,29 @@ public class ShiftSummary {
         this.restrictedAreaHitCount++;
     }
 
+    /**
+     * Returns the number of items successfully delivered by this employee.
+     *
+     * @return delivered item count
+     */
     public int getDeliveredItemCount() {
         return this.deliveredItemCount;
     }
 
+    /**
+     * Returns the number of attempted movements into walls or boundaries.
+     *
+     * @return wall hit count
+     */
     public int getWallHitCount() {
         return this.wallHitCount;
     }
 
+    /**
+     * Returns the number of attempted movements into restricted areas.
+     *
+     * @return restricted-area hit count
+     */
     public int getRestrictedAreaHitCount() {
         return this.restrictedAreaHitCount;
     }

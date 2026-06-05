@@ -1,7 +1,7 @@
 package io;
 
 /**
- * Shared CSV constants and helpers will be added here in later phases.
+ * Utility holder for shared CSV support.
  */
 public final class CsvSupport {
 

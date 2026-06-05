@@ -31,26 +31,56 @@ public abstract class Employee {
         this.shiftSummary = new ShiftSummary();
     }
 
+    /**
+     * Returns the unique ID used to log in and match payslip records.
+     *
+     * @return employee ID
+     */
     public String getEmployeeId() {
         return this.employeeId;
     }
 
+    /**
+     * Returns the employee's display name.
+     *
+     * @return employee name
+     */
     public String getEmployeeName() {
         return this.employeeName;
     }
 
+    /**
+     * Returns the employee's assigned role.
+     *
+     * @return employee designation
+     */
     public Designation getDesignation() {
         return this.designation;
     }
 
+    /**
+     * Returns the employee's base salary before shift bonuses or penalties.
+     *
+     * @return base salary
+     */
     public double getBaseSalary() {
         return this.baseSalary;
     }
 
+    /**
+     * Returns the direct manager ID loaded from the employees CSV file.
+     *
+     * @return manager ID, or an empty string when no manager is supplied
+     */
     public String getManagerId() {
         return this.managerId;
     }
 
+    /**
+     * Returns the shift summary that stores this employee's current-session results.
+     *
+     * @return shift summary
+     */
     public ShiftSummary getShiftSummary() {
         return this.shiftSummary;
     }

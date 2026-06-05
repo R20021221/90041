@@ -22,7 +22,7 @@ public class WarehouseCsvReader {
      * Opens and scans a warehouse CSV file.
      *
      * @param filePath warehouse CSV path
-     * @param warehouseMap warehouse model to populate in later phases
+     * @param warehouseMap warehouse model to populate
      * @return number of non-empty data rows with the expected field count
      * @throws FileNotFoundException if the file cannot be opened
      */
@@ -62,6 +62,17 @@ public class WarehouseCsvReader {
         return loadedRowCount;
     }
 
+    /**
+     * Parses, validates, and applies one warehouse CSV data line.
+     *
+     * @param fields comma-separated fields from the line
+     * @param lineNumber source CSV line number
+     * @param warehouseMap warehouse model to update
+     * @return true if the line was loaded
+     * @throws InvalidLocationException if the row or column is invalid
+     * @throws InvalidTypeException if a cell or shelf type is invalid
+     * @throws InvalidWarehouseException if the line conflicts with existing warehouse data
+     */
     private boolean loadWarehouseLine(String[] fields, int lineNumber, WarehouseMap warehouseMap)
             throws InvalidLocationException, InvalidTypeException, InvalidWarehouseException {
         String floorValue = fields[0].trim();
@@ -112,11 +123,29 @@ public class WarehouseCsvReader {
         return loadShelfLine(fields, lineNumber, warehouseMap, floorIndex, row, col);
     }
 
+    /**
+     * Checks whether a restricted-location line incorrectly includes a shelf type.
+     *
+     * @param fields warehouse CSV fields
+     * @return true if the shelf type field is not blank or hyphen
+     */
     private boolean hasRestrictedShelfType(String[] fields) {
         String shelfTypeValue = fields[4].trim();
         return !shelfTypeValue.isEmpty() && !"-".equals(shelfTypeValue);
     }
 
+    /**
+     * Applies a valid restricted-location line to the warehouse map.
+     *
+     * @param fields warehouse CSV fields
+     * @param lineNumber source CSV line number
+     * @param warehouseMap warehouse model to update
+     * @param floorIndex zero-based floor index
+     * @param row row index
+     * @param col column index
+     * @return true if the line was loaded
+     * @throws InvalidWarehouseException if a shelf type is present for the restricted location
+     */
     private boolean loadRestrictedLine(String[] fields, int lineNumber, WarehouseMap warehouseMap,
                                        int floorIndex, int row, int col) throws InvalidWarehouseException {
         if (hasRestrictedShelfType(fields)) {
@@ -127,6 +156,19 @@ public class WarehouseCsvReader {
         return true;
     }
 
+    /**
+     * Applies a valid shelf line to the warehouse map.
+     *
+     * @param fields warehouse CSV fields
+     * @param lineNumber source CSV line number
+     * @param warehouseMap warehouse model to update
+     * @param floorIndex zero-based floor index
+     * @param row row index
+     * @param col column index
+     * @return true if the line was loaded
+     * @throws InvalidTypeException if the shelf type is invalid
+     * @throws InvalidWarehouseException if an existing shelf has a different type
+     */
     private boolean loadShelfLine(String[] fields, int lineNumber, WarehouseMap warehouseMap,
                                   int floorIndex, int row, int col)
             throws InvalidTypeException, InvalidWarehouseException {
