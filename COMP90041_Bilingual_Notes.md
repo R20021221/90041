@@ -1,4 +1,4 @@
-﻿# COMP90041 Week 1-5 Bilingual Definition Notes
+# COMP90041 Week 1-5 Bilingual Definition Notes
 
 Based on:
 - `Week_1_Introduction_to_Programming.pdf`
